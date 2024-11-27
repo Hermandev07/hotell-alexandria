@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book rom</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="./Index.html">Hovedside</a>
+        <a href="./Vårerom.html">Våre rom</a>
+        <a href="./Bookrom.html">book rom</a>
+        <a href="./Hentbookinginfo.html">Hent Bookinginfo</a>
+    </nav>
+
+    <header>
+        <h1>Book rom</h1>
+        <p>Fyll ut skjemaet for å booke ditt opphold.</p>
+    </header>
+    
+    <form action="/book" method="POST" id="booking-form">
+        <label for="roomType">Romtype:</label>
+        <select name="roomType" id="roomType" required>
+            <option value="Standard">Standard</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+        </select>
+
+        <label for="guests">Antall gjester:</label>
+        <input type="number" id="guests" name="guests" min="1" max="6" required>
+
+        <label for="name">Navn:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">E-post:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Send booking</button>
+    </form>
+
+
+    <footer>
+        <p>&copy; 2024 Hotell Alexandria. Alle rettigheter forbeholdt.</p>
+    </footer>
+
+</body>
+</html>

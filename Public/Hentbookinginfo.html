@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hent bookinginfo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="./Index.html">Hovedside</a>
+        <a href="./Vårerom.html">Våre rom</a>
+        <a href="./Bookrom.html">book rom</a>
+        <a href="./Hentbookinginfo.html">Hent Bookinginfo</a>
+    </nav>
+
+    <header>
+        <h1>Hent bookinginfo</h1>
+        <p>Skriv inn referansenummeret for å se detaljer om din booking.</p>
+    </header>
+
+    <form id="fetch-booking-form">
+        <label for="refNumber">Referansenummer:</label>
+        <input type="text" id="refNumber" name="refNumber" required>
+        <button type="submit">Hent informasjon</button>
+    </form>
+
+    <div id="booking-info"></div>
+
+    <script>
+        document.getElementById('fetch-booking-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const refNumber = document.getElementById('refNumber').value;
+            const response = await fetch(`/bookinginfo?ref=${refNumber}`);
+            const data = await response.json();
+            const resultDiv = document.getElementById('booking-info');
+            if (data.error) {
+                resultDiv.innerHTML = `<p style="color: red;">${data.error}</p>`;
+            } else {
+                resultDiv.innerHTML = `
+                    <h2>Din booking:</h2>
+                    <p>Romtype: ${data.roomType}</p>
+                    <p>Antall gjester: ${data.guests}</p>
+                    <p>Navn: ${data.name}</p>
+                    <p>E-post: ${data.email}</p>
+                    <p>Referansenummer: ${data.ref}</p>
+                `;
+            }
+        });
+    </script>
+
+    <footer>
+    <p>&copy; 2024 Hotell Alexandria. Alle rettigheter forbeholdt.</p>
+    </footer>
+
+</body>
+</html>
